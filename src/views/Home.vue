@@ -6,12 +6,12 @@
         :alt_01="alt_carousel_01"
         :alt_02="alt_carousel_02"
         :alt_03="alt_carousel_03"    
-    />
-    <div class="container text-center">
-        <h1>Conteúdo da Home</h1>
-        <BtnCadastrar/>
+    /><br>
+    <div class="container">
+        <h1 class="text-center">Conteúdo da Home</h1><br>
+        <BtnCadastrar/><br>
         <FormBurger/>
-    </div>
+    </div><br>
 </template>
 
 <script>
