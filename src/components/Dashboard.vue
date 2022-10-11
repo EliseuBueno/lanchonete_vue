@@ -20,8 +20,15 @@
                     <td>
                         <li v-for="(opcional, index) in burger.opcionais" :key="index">{{opcional}}</li>
                     </td>
-                    <!-- <td>{{burger.opcionais}}</td> -->
-                    <td>Adicionar Excluir</td>
+                    <td>
+                        <select class="form-select form-select-sm mb-3" name="status" id="carne" v-model="carne">
+                            <option value="">Selecione</option>
+                            <option v-for="s in status" value="s.tipo" :key="s.id" :selected="burger.status == s.tipo">
+                                {{s.tipo}}
+                            </option>
+                        </select>
+                        <button class="btn btn-danger" value="Cancelar">Cancelar</button>
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -43,7 +50,16 @@ export default {
             const req = await fetch('http://localhost:3000/burgers')
             const data = await req.json()
             this.burgers = data
-            console.log(this.burgers)
+             
+            this.getStatus()
+        },
+
+        async getStatus() {
+            const req = await fetch('http://localhost:3000/status')
+            const data = await req.json()
+            this.status = data
+
+            console.log(data)
         }
     },
     mounted() {
