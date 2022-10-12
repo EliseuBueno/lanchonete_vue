@@ -1,5 +1,6 @@
 <template>
     <div>
+        <Message :msg="msg" v-show="msg" />
         <table class="table table-hover table-bordered">
             <thead class="table-dark text-center">
                 <tr>
@@ -36,60 +37,60 @@
 </template>
 
 <script>
+import Message from './Message.vue'
 export default {
-    name: 'Dashboard',
+    name: "Dashboard",
     data() {
         return {
             burgers: null,
             burger_id: null,
             status: [],
-        }
+            msg: null,
+        };
     },
     methods: {
         async getPedidos() {
-            const req = await fetch('http://localhost:3000/burgers')
-            const data = await req.json()
-            this.burgers = data
-             
-            this.getStatus()
+            const req = await fetch("http://localhost:3000/burgers");
+            const data = await req.json();
+            this.burgers = data;
+            this.getStatus();
         },
-
         async getStatus() {
-            const req = await fetch('http://localhost:3000/status')
-            const data = await req.json()
-            this.status = data
-
+            const req = await fetch("http://localhost:3000/status");
+            const data = await req.json();
+            this.status = data;
         },
-
         async deleteBurger(id) {
-
             const req = await fetch(`http://localhost:3000/burgers/${id}`, {
-                method: 'DELETE'
-            })
+                method: "DELETE"
+            });
+            const res = await req.json();
 
-            const res = await req.json()
-            this.getPedidos()
+            this.msg = `Pedido removido com sucesso!`
+
+            setTimeout(() => this.msg = "", 3000)
+            
+            this.getPedidos();
         },
-
         async updatedBurger(event, id) {
-
-            const option = event.target.value
-
-            const dataJson = JSON.stringify({ status: option })
-
+            const option = event.target.value;
+            const dataJson = JSON.stringify({ status: option });
             const req = await fetch(`http://localhost:3000/burgers/${id}`, {
-                method: 'PATCH',
+                method: "PATCH",
                 headers: { "Content-Type": "application/json" },
                 body: dataJson
-            })
+            });
 
             const res = await req.json()
-            console.log(res)
-            // this.getPedidos()
+
+            this.msg = `Pedido Nº ${res.id} atualizado para ${res.status} com Sucesso!`
+
+            setTimeout(()=> this.msg = "", 3000)
         },
     },
     mounted() {
-        this.getPedidos()
-    }
+        this.getPedidos();
+    },
+    components: { Message }
 }
 </script>
