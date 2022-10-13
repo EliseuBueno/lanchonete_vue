@@ -1,5 +1,5 @@
 <template>
-    <header class="navbar navbar-expand-lg bg-dark">
+    <header class="navbar navbar-expand-lg navbar-dark cabecalho">
         <div class="container">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -29,7 +29,7 @@
                 </ul>
                 <form class="d-flex" role="search">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
+                    <button class="btn btn-outline-primary" type="submit">Pesquisar</button>
                 </form>
             </div>
         </div>
@@ -38,16 +38,16 @@
 
 <script>
 export default {
-    name: 'NavBar',
+    name: "NavBar",
     props: [
-        'logo',
-        'alt',
+        "logo",
+        "alt",
     ],
- }
+}
 </script>
 
 <style scoped>
-    .teste{
-        color: white;
+    .cabecalho{
+        background-color: #1C1C1C;
     }
 </style>

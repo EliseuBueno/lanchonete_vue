@@ -110,7 +110,6 @@ export default {
         -webkit-transform: scale(1.1);
         -ms-transform: scale(1.1);
         transform: scale(1.1);
-        /* background: blue; */
         opacity: 0.7;
     }
 </style>
